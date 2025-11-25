@@ -38,3 +38,13 @@ async function getKomikById(database, id) {
 
   return komik;
 }
+
+async function updateKomik(database, id, komikData) {
+  const komik = await database.Komik.findByPk(id);
+  if (!komik) {
+    throw new Error(`Komik dengan ID ${id} tidak ditemukan`);
+  }
+
+  await komik.update(komikData);
+  return komik;
+}
